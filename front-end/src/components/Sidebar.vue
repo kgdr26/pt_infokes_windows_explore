@@ -31,11 +31,6 @@
             <div id="two-column-menu">
             </div>
             <ul class="navbar-nav" id="navbar-nav">
-                <li class="nav-item">
-                    <router-link to="/home" class="nav-link" data-key="t-main-calender">
-                        <i class="ri-home-4-line"></i> <span data-key="ri-home-4-line">Home</span>
-                    </router-link>
-                </li>
 
                 <li class="nav-item">
                     <router-link to="/explorer" class="nav-link" data-key="t-main-calender">
