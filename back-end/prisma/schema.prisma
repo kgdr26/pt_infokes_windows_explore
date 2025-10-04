@@ -1,0 +1,36 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model mst_icon {
+  mi_id   Int     @id @default(autoincrement())
+  mi_icon String? @db.VarChar(255)
+
+  folders trx_master_folder[]  // relasi balik
+}
+
+model trx_master_folder {
+  tmf_id           Int       @id @default(autoincrement())
+  tmf_name         String?   @db.VarChar(255)
+  tmf_mi_id        Int?
+  tmf_description  String?   @db.Text
+  tmf_created_date DateTime @default(now())
+
+  icon mst_icon? @relation(fields: [tmf_mi_id], references: [mi_id])
+}
+
+
+model trx_content_folder {
+  tcf_id           Int       @id @default(autoincrement())
+  tcf_id_folder    Int?
+  tcf_name         String?   @db.VarChar(255)
+  tcf_description  String?   @db.Text
+  tcf_turunan      Int?
+  tcf_created_date DateTime? @db.DateTime(0)
+}
